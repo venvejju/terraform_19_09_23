@@ -1,0 +1,11 @@
+provider "aws" {
+    region = "ap-south-1" # Set your desired region
+}
+
+resource "aws_instance" "terraform_created_instance" {
+    ami = "ami-05552d2dcf89c9b24" #Set your own ami
+    instance_type = "t2.micro"
+    subnet_is = "subnet-0418dbd038492a79c"
+    key_pair = "tf_instance"
+
+}
