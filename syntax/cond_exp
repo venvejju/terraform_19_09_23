@@ -20,3 +20,4 @@ resource "aws_secrity_group" "example"{
     }
 
  }
+ami-08e5424edfe926b43
