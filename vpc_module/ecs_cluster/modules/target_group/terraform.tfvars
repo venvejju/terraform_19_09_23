@@ -1,0 +1,12 @@
+tg_name = "ecs-target-group"
+port = "80"
+protocol = "HTTP"
+interval = "30"
+path="/"
+port = "Traffic port"
+protocol = "HTTP1"
+healthy_threshold = "5"
+unhealthy_threshold ="2"
+timeout = "5"
+success_codes = "200"
+instances = ["i-02bcfc71dfdf63333","i-0d09c6fa72e145684"]
