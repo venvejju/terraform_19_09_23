@@ -118,7 +118,36 @@ module "target_group" {
     healthy_threshold = var.healthy_threshold
     unhealthy_threshold = var.unhealthy_threshold
     timeout = var.timeout
-    instances = ["i-02bcfc71dfdf63333","i-0d09c6fa72e145684"]
+    instances = var.instances[*]
     use_ip_as_target = var.use_ip_as_target
+
+}
+
+module "ecselb" {
+    source = "./modules/load_balancer"
+    elb_type = var.elb_type
+    elb_scheme = var.elb_scheme
+    elb_security_groups = [module.sec_group.ec2_sg_id, module.sec_group.alb_sg_id]
+    #elb_listeners = var.elb_listeners
+    elb_name = var.elb_name
+    subnet_id = module.subnets.subnet_id[*]
+    edp = var.edp
+    target_group_arn = module.target_group.tg_arn  
+    elb_ip_address_type = var.elb_ip_address_type
+    ssl_policy = var.ssl_policy
+
+}
+
+module "ecs_asg" {
+    source = "./modules/asg"
+    asg_name = var.asg_name
+    asg_lt_id = module.ecs_lt.launch_template_id
+    vpc_zone_identifier = [module.subnets.subnet_id[0],module.subnets.subnet_id[1]]
+    max_size = var.max_size
+    min_size = var.min_size
+    desired_capacity = var.desired_capacity
+    health_check_type = var.health_check_type
+    enable_target_group = var.enable_target_group
+    target_group_arn = module.target_group.tg_arn
 
 }

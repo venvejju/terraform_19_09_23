@@ -35,5 +35,33 @@ health_check_protocol = "HTTPS"
 healthy_threshold = "5"
 unhealthy_threshold ="2"
 timeout = "5"
-instances = ["i-02bcfc71dfdf63333","i-0d09c6fa72e145684"]
+instances = ["i-016ca7f100e6848be","i-0a6cdc3e1b853b4a9"]
 use_ip_as_target = false
+elb_type = "application" 
+elb_scheme = "internet-facing"
+#elb_security_groups = []
+elb_ip_address_type = "ipv4"
+#elb_listeners=[
+#       {
+#          elb_port = var.elb_port_ttp
+#          elb_protocol = var.elb_protocol_ttp
+#          target_group_arn = module.target_group.tg_arn
+
+#       },
+#       {
+#          elb_port = var.elb_port_ttps
+#          elb_protocol = var.elb_protocol_ttps
+#          target_group_arn = module.target_group.tg_arn
+
+#       }
+#    ]
+elb_name = "ecs-lb"
+edp=true
+ssl_policy ="ELBSecurityPolicy-2016-08"
+asg_name="ecs-asg" 
+max_size="4" 
+min_size="1" 
+desired_capacity="3" 
+health_check_type="EC2" 
+enable_target_group=true 
+

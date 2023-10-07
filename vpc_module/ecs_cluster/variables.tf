@@ -214,3 +214,85 @@ variable "timeout" {
   description = "Health check timeout of the TG"
 }
 
+variable "elb_type" {
+  description = "Type of Elastic Load Balancer"
+  type = string
+  validation {
+    condition = can(regex("^(network|application|gateway)$", var.elb_type))
+    error_message = "Valid Options are 'network','Aplication', or 'gateway'."
+  }
+}
+variable "elb_scheme" {
+  description = "Load balancer scheme(internet-facing or internal)"
+}
+#variable "elb_security_groups" {
+#  description = "List of Security groups"
+#  type = list(string)
+#}
+
+#variable "elb_listeners" {
+#  description = "List of listeners"
+#}
+
+#variable "elb_port_ttp" {
+#  description = "Port of the ttp protocol"
+#}
+
+#variable "elb_port_ttps" {
+#  description = "port of the ttpS"
+#}
+
+#variable "elb_protocol_ttp" {
+#  description = "protocol of ttp"
+ 
+#}
+
+#variable "elb_protocol_ttps" {
+#  description = "protocol of teh ttps"
+
+#}
+
+variable "elb_ip_address_type" {
+  description = "IP Address type"
+  type=string
+}
+variable "elb_name" {
+  description = "Name of the elb"
+}
+
+variable "edp" {
+  description = "Name of the edp"
+}
+variable "ssl_policy" {
+
+
+}
+
+variable "asg_name" {
+  description = "Name of the asg"
+
+}
+
+
+variable "max_size"{
+  description = "max_size of the asg"
+}
+
+variable "min_size"{
+  description = "min_size of the asg"
+}
+
+variable "desired_capacity"{
+  description = "desired_capacity of the asg"
+}
+
+variable "health_check_type"{
+  description = "health_check_type of the asg"
+}
+
+variable "enable_target_group"{
+  description = "Variable for target_group enablement"
+  
+}
+
+
