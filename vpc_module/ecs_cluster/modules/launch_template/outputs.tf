@@ -5,3 +5,10 @@ output "launch_template_id" {
   value = aws_launch_template.ecs_lt.id
 
 }
+
+output "lt_instance_type" {
+  description = "Instance type of the launch template"
+  value = aws_launch_template.ecs_lt.instance_type
+
+
+}

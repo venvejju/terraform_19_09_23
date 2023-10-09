@@ -56,12 +56,23 @@ elb_ip_address_type = "ipv4"
 #       }
 #    ]
 elb_name = "ecs-lb"
-edp=true
+edp=false
+
 ssl_policy ="ELBSecurityPolicy-2016-08"
 asg_name="ecs-asg" 
 max_size="4" 
 min_size="1" 
-desired_capacity="3" 
+desired_capacity="1" 
 health_check_type="EC2" 
 enable_target_group=true 
-
+cluster_name="cluster-initial"
+ecs_cp_name="initial-cp"
+managed_scaling_status="DISABLED"
+ecs_region = "ap-south-1"
+ecs_compatibility = ["EC2"]
+ecs_family = "Service"
+network_mode = "bridge"
+container_name = "nginx-container"
+ecs_image = "868069081965.dkr.ecr.ap-south-1.amazonaws.com/dev-ecs:1"
+ecs_service_name = "nginx-service"
+count_container = 3

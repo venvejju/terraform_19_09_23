@@ -295,4 +295,56 @@ variable "enable_target_group"{
   
 }
 
+variable "cluster_name" {
+   description = "Name of the Cluster"
+   
+}
+
+
+variable "ecs_cp_name" {
+   description = "Name of the Capacity Provider"
+
+}
+
+variable "managed_scaling_status" {
+   description = "Status of the managed_scaling"
+}
+
+variable "ecs_region" {
+   description = "Region of the ecs to define in the launch template"
+
+}
+
+variable "ecs_compatibility" {
+   description = "Compability of the ECS"
+
+}
+
+variable "ecs_family" {
+   description = "Family of the ECS, you can mention your own"
+}
+
+variable "network_mode" {
+   description = "network_mode of the task-definition, bridge, none awsvpc"
+}
+
+variable "container_name" {
+   description = "NAme of the container"
+}
+
+variable "ecs_image" {
+   description = "ARN of the ECR" 
+
+}
+
+
+variable "ecs_service_name" {
+   description = "Name of the ECS Service"
+
+}
+
+
+variable "count_container" {
+   description = "Count of the containers"
+}
 

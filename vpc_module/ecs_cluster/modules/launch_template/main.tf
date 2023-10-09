@@ -35,7 +35,11 @@ resource "aws_launch_template" "ecs_lt" {
 
 
    }
-   user_data = var.user_data_file ? base64encode(templatefile(var.user_data_file_path,{})) : null
+   user_data = var.user_data_file ? base64encode(templatefile(var.user_data_file_path,
+      {
+        clustername = var.ecs_cluster_name
+        region      = var.ecs_region
+      })) : null
 
 
 

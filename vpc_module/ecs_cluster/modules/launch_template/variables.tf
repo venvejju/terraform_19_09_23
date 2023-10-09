@@ -73,3 +73,11 @@ variable "user_data_file_path" {
   description = "specify the file path of user daata"
 
 }
+variable "ecs_cluster_name" {
+
+  description = "Name of the Cluster"
+}
+variable "ecs_region" {
+
+  description = "Name of the region"
+}

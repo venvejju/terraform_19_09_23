@@ -1,7 +1,13 @@
-#output "asg_inst_ids" {
+output "asg_arn" {
 
-#   description = "asg names"
-#   value = aws_autoscaling_group.ecs_asg.instances
+   description = "asg arn"
+   value = aws_autoscaling_group.ecs_asg.arn
 
 
-#}
+}
+
+output "asg_dc_count" {
+   description = "asg_dc_count"
+   value = aws_autoscaling_group.ecs_asg.desired_capacity
+
+}

@@ -103,6 +103,8 @@ module "ecs_lt" {
     use_ssm_role = var.use_ssm_role
     user_data_file = var.user_data_file
     user_data_file_path = var.user_data_file_path
+    ecs_cluster_name = module.ecs_cluster.cluster_name
+    ecs_region = var.ecs_region
 }
 
 module "target_group" {
@@ -149,5 +151,46 @@ module "ecs_asg" {
     health_check_type = var.health_check_type
     enable_target_group = var.enable_target_group
     target_group_arn = module.target_group.tg_arn
+    #target_group_arn = module.ecs_cluster.cluster_arn
+
 
 }
+
+module "ecs_cluster" {
+    source = "./modules/ecs/cluster"
+    cluster_name = var.cluster_name
+    #capacity_provider_name = module.capacity_provider.capacity_provider_name
+}
+
+#module "capacity_provider" {
+#    source = "./modules/ecs/capacity-provider"
+#    ecs_cp_name = var.ecs_cp_name
+    #cp_cluster_name = module.ecs_cluster.cluster_name
+#    auto_scaling_group_arn = module.ecs_asg.asg_arn
+#    managed_scaling_status = var.managed_scaling_status
+
+#}
+module "task-definition" {
+    source = "./modules/ecs/task-defintion"
+    ecs_compatibility = var.ecs_compatibility
+    ecs_family = var.ecs_family
+    network_mode = var.network_mode
+    container_name = var.container_name
+    ecs_image = var.ecs_image 
+
+}
+
+module "service" {
+    source = "./modules/ecs/service"
+    ecs_service_name = var.ecs_service_name
+    ecs_cluster_id = module.ecs_cluster.cluster_id
+    ecs_target_group_arn = module.target_group.tg_arn
+    count_container = var.count_container
+    service_iam_role = "arn:aws:iam::868069081965:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
+    ecs_task_definition_arn = module.task-definition.task_definition_arn 
+    
+
+
+}
+
+
